@@ -6,7 +6,7 @@
 #define T  32
 #define N  CH*T
 #define spklen 19
-#define prelen 8
+#define prelen 9
 
 typedef ap_uint<192> ap_bundle; // {16bits, 16bits, 32bits, 127bits}: {{4'b0, ch_last_bufo}, {4'b0, ch_bufo}, frame_No_bufo, multi_channel_muao}
 typedef ap_uint<128> ap_data;   // 32bit * 4 = 128bits for tetrode
@@ -28,10 +28,12 @@ struct spk_struct{
 	ch_type      id;
 	bool         last;
 	ap_data      data;
+	ap_uint<1>   dest;
 };
 
 enum txState {IDLE=0, PRE, POST};
 
 void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
-				   hls::stream<spk_struct> &out_pre, hls::stream<spk_struct> &out_post,
-				   hls::stream<int> &time_stamp, ap_uint<CH> *busy);
+				   hls::stream<spk_struct> &out_pre,
+				   hls::stream<spk_struct> &out_post,
+				   hls::stream<int> &time_stamp);
