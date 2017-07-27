@@ -36,9 +36,11 @@
 #include "ap_fixed.h"
 #include <hls_stream.h>
 
-#define CH 160
+#define CH 160  // change to 8 for C simulation
 #define T  2
 #define N  CH*T
+#define CH_PG 4
+#define INACTIVE_LEN 4 // time length that disable any peak once you get one
 
 typedef ap_fixed<32,19> mua_type;
 typedef ap_uint<64>     data_type;     // (31,0): mua   (63,32): thr

@@ -1,0 +1,33 @@
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2016.1
+  Build 1538259 on Fri Apr 08 16:12:49 MDT 2016
+  Copyright (C) 1986-2016 Xilinx, Inc. All Rights Reserved.
+================================================================
+INFO: [HLS 200-10] Running '/disk0/Xilinx/Vivado_HLS/2016.1/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'localuser' on host 'laic-ws1.hhmi.org' (Linux_x86_64 version 4.4.0-59-generic) on Mon Jul 17 22:48:41 EDT 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.2 LTS
+INFO: [HLS 200-10] In directory '/disk0/Work/xike_hls_module/spkDect'
+WARNING: [HLS 200-40] Environment variable 'CPLUS_INCLUDE_PATH' is set to /usr/local/hdf5/include.
+INFO: [HLS 200-10] Opening project '/disk0/Work/xike_hls_module/spkDect/spk_dect'.
+INFO: [HLS 200-10] Adding design file '../spkDect/spkDect.cpp' to the project
+INFO: [HLS 200-10] Adding design file '../spkDect/spkDect.h' to the project
+INFO: [HLS 200-10] Adding test bench file '../spkDect/spkDect_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/disk0/Work/xike_hls_module/spkDect/spk_dect/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k325tffg900-2'
+./spk_dect/solution1/directives.tcl can't be opened.
+couldn't read file "./spk_dect/solution1/directives.tcl": no such file or directory
+    while executing
+"source "./spk_dect/solution1/directives.tcl""
+    (file "/disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl" line 14)
+    invoked from within
+"source /disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl"
+    invoked from within
+"hls::main /disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$args"
+    (procedure "hls_proc" line 5)
+    invoked from within
+"hls_proc $argv"

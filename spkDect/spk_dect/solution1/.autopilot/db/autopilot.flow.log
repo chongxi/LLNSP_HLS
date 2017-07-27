@@ -1,0 +1,399 @@
+@I [HLS-0] Workspace /disk0/Work/xike_hls_module/spkDect/spk_dect/solution1 opened at Mon Jul 17 22:48:41 EDT 2017
+@I [HLS-100] Command "config_clock -quiet -name default -period 4 -default=false "
+@I [SYN-201] Setting up clock 'default' with a period of 4ns.
+@I [HLS-100] Command 'config_clock' returned 0; elapsed 0.000162Total elapsed time: 0.316 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 7.3e-05Total elapsed time: 0.317 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000479Total elapsed time: 0.318 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000211Total elapsed time: 0.319 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000292Total elapsed time: 0.319 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000258Total elapsed time: 0.320 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000166Total elapsed time: 0.320 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002668Total elapsed time: 0.320 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000169Total elapsed time: 0.321 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000106Total elapsed time: 0.321 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 9.4e-05Total elapsed time: 0.321 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 9.2e-05Total elapsed time: 0.322 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.007115Total elapsed time: 0.324 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_old.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000617Total elapsed time: 0.327 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_vivado.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000647Total elapsed time: 0.327 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00014Total elapsed time: 0.331 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000133Total elapsed time: 0.331 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 8.4e-05Total elapsed time: 0.331 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000636Total elapsed time: 0.332 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000541Total elapsed time: 0.332 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002856Total elapsed time: 0.333 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/dsp48e1.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.7e-05Total elapsed time: 0.333 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 8e-06Total elapsed time: 0.333 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 2.4e-05Total elapsed time: 0.334 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 9e-06Total elapsed time: 0.334 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.018281Total elapsed time: 0.335 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001525Total elapsed time: 0.338 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000387Total elapsed time: 0.339 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001828Total elapsed time: 0.341 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/nativeAXI4.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.003158Total elapsed time: 0.344 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.006685Total elapsed time: 0.351 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.010216Total elapsed time: 0.351 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.010904Total elapsed time: 0.362 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.008901Total elapsed time: 0.371 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00091Total elapsed time: 0.373 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00017Total elapsed time: 0.373 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.003899Total elapsed time: 0.377 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.099Total elapsed time: 0.476 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.140075Total elapsed time: 0.477 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000134Total elapsed time: 0.478 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.142594Total elapsed time: 0.479 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.142921Total elapsed time: 0.479 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 8e-06Total elapsed time: 0.479 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv7.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_hp.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000592Total elapsed time: 0.480 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.003258Total elapsed time: 0.482 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000129Total elapsed time: 0.488 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000102Total elapsed time: 0.489 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.9e-05Total elapsed time: 0.489 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00044Total elapsed time: 0.489 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000509Total elapsed time: 0.490 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002295Total elapsed time: 0.490 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00281Total elapsed time: 0.491 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_hp.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000705Total elapsed time: 0.492 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.016749Total elapsed time: 0.496 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv6.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001299Total elapsed time: 0.497 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001521Total elapsed time: 0.497 sec.
+@I [HLS-100] Command "set_part xc7k325tffg900-2 "
+@I [HLS-100] Command "add_library xilinx/kintex7/kintex7:xc7k325t:ffg900:-2 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 6e-06Total elapsed time: 0.501 sec.
+@I [HLS-100] Command "license_isbetapart xc7k325t "
+@I [HLS-100] Command 'license_isbetapart' returned 1; elapsed 0.006953Total elapsed time: 0.509 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 6e-06Total elapsed time: 0.509 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000233Total elapsed time: 0.509 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000124Total elapsed time: 0.510 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000187Total elapsed time: 0.510 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000154Total elapsed time: 0.510 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.0001Total elapsed time: 0.511 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001486Total elapsed time: 0.511 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000162Total elapsed time: 0.511 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 6.8e-05Total elapsed time: 0.511 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 6.2e-05Total elapsed time: 0.511 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 6e-05Total elapsed time: 0.511 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.004151Total elapsed time: 0.513 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_old.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000485Total elapsed time: 0.515 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_vivado.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000634Total elapsed time: 0.516 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 9.5e-05Total elapsed time: 0.518 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 9.5e-05Total elapsed time: 0.518 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.3e-05Total elapsed time: 0.518 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000385Total elapsed time: 0.519 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000455Total elapsed time: 0.519 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002126Total elapsed time: 0.520 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/dsp48e1.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.4e-05Total elapsed time: 0.520 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.520 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 1.6e-05Total elapsed time: 0.520 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 5e-06Total elapsed time: 0.520 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.012864Total elapsed time: 0.522 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000778Total elapsed time: 0.523 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000367Total elapsed time: 0.524 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001683Total elapsed time: 0.525 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/nativeAXI4.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002992Total elapsed time: 0.529 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.006475Total elapsed time: 0.535 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.009774Total elapsed time: 0.535 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.008158Total elapsed time: 0.544 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.006638Total elapsed time: 0.550 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000622Total elapsed time: 0.551 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00012Total elapsed time: 0.552 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002908Total elapsed time: 0.555 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.085046Total elapsed time: 0.640 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.117518Total elapsed time: 0.640 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000116Total elapsed time: 0.641 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.119431Total elapsed time: 0.642 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.119611Total elapsed time: 0.642 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 6e-06Total elapsed time: 0.642 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 1.5e-05Total elapsed time: 0.642 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 5e-06Total elapsed time: 0.642 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0.141952Total elapsed time: 0.644 sec.
+@I [HLS-100] Command "add_library xilinx/kintex7/kintex7_fpv6 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.644 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 7e-06Total elapsed time: 0.645 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv7.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_hp.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000513Total elapsed time: 0.646 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00276Total elapsed time: 0.648 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000119Total elapsed time: 0.653 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.0001Total elapsed time: 0.653 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.8e-05Total elapsed time: 0.653 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000441Total elapsed time: 0.653 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000524Total elapsed time: 0.654 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002278Total elapsed time: 0.654 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002854Total elapsed time: 0.655 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_hp.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000764Total elapsed time: 0.656 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.015201Total elapsed time: 0.660 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv6.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001254Total elapsed time: 0.661 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001448Total elapsed time: 0.661 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0.018076Total elapsed time: 0.662 sec.
+@I [HLS-10] Setting target device to 'xc7k325tffg900-2'
+@I [HLS-100] Command 'set_part' returned 0; elapsed 0.163391Total elapsed time: 0.662 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.662 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 1e-05Total elapsed time: 0.662 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 5e-06Total elapsed time: 0.663 sec.
+@I [HLS-100] Command 'open_solution' returned 0; elapsed 0.351684Total elapsed time: 0.663 sec.
+@I [HLS-100] Command "set_part xc7k325tffg900-2 -tool vivado "
+@I [HLS-100] Command "add_library xilinx/kintex7/kintex7:xc7k325t:ffg900:-2 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.665 sec.
+@I [HLS-100] Command "license_isbetapart xc7k325t "
+@I [HLS-100] Command 'license_isbetapart' returned 1; elapsed 4.7e-05Total elapsed time: 0.666 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 6e-06Total elapsed time: 0.666 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000233Total elapsed time: 0.666 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000122Total elapsed time: 0.667 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000168Total elapsed time: 0.667 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000152Total elapsed time: 0.667 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000102Total elapsed time: 0.668 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001482Total elapsed time: 0.668 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000148Total elapsed time: 0.668 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 6.6e-05Total elapsed time: 0.668 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 5.9e-05Total elapsed time: 0.668 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 5.6e-05Total elapsed time: 0.669 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.004049Total elapsed time: 0.670 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_old.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000443Total elapsed time: 0.672 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_vivado.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000613Total elapsed time: 0.673 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000109Total elapsed time: 0.675 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 9.5e-05Total elapsed time: 0.675 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.5e-05Total elapsed time: 0.675 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000441Total elapsed time: 0.675 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000455Total elapsed time: 0.676 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002157Total elapsed time: 0.676 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/dsp48e1.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 7.5e-05Total elapsed time: 0.677 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.677 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 1.3e-05Total elapsed time: 0.677 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 5e-06Total elapsed time: 0.677 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.01258Total elapsed time: 0.679 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/virtex.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/plb46.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000744Total elapsed time: 0.680 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/fsl.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000371Total elapsed time: 0.680 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/axi4.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001712Total elapsed time: 0.682 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/nativeAXI4.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.00285Total elapsed time: 0.685 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.006289Total elapsed time: 0.692 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.009461Total elapsed time: 0.692 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/scripts/xilinxcoregen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.008011Total elapsed time: 0.700 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/XilEDKCoreGen.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.006662Total elapsed time: 0.707 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfir.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000614Total elapsed time: 0.708 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/util.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000121Total elapsed time: 0.708 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/dds_compiler.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.003007Total elapsed time: 0.711 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/ip/xfft.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.088885Total elapsed time: 0.800 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.121434Total elapsed time: 0.800 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000158Total elapsed time: 0.802 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.123817Total elapsed time: 0.803 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.124006Total elapsed time: 0.803 sec.
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 1.3e-05Total elapsed time: 0.803 sec.
+@I [HLS-100] Command "config_chip_info -quiet -resource  {SLICE 50950} {LUT 203800}    {FF 407600} {DSP48E 840}    {BRAM 890}  "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 2.1e-05Total elapsed time: 0.804 sec.
+@I [HLS-100] Command "config_chip_info -quiet -speed medium "
+@I [HLS-100] Command 'config_chip_info' returned 0; elapsed 5e-06Total elapsed time: 0.804 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0.139176Total elapsed time: 0.805 sec.
+@I [HLS-100] Command "add_library xilinx/kintex7/kintex7_fpv6 "
+@I [HLS-100] Command "get_default_platform "
+@I [HLS-100] Command 'get_default_platform' returned 0; elapsed 4e-06Total elapsed time: 0.805 sec.
+@I [HLS-100] Command "open_platform DefaultPlatform "
+@I [HLS-100] Command 'open_platform' returned 0; elapsed 1.1e-05Total elapsed time: 0.806 sec.
+@I [HLS-100] Command "import_lib /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6 "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv7.lib "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_hp.lib "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000565Total elapsed time: 0.807 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002846Total elapsed time: 0.809 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/target_info.tcl "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000128Total elapsed time: 0.814 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/xilinx_interface.hlp "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/maxi.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000115Total elapsed time: 0.815 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/interface/saxilite.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 8.9e-05Total elapsed time: 0.815 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000487Total elapsed time: 0.815 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/dsp48.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000554Total elapsed time: 0.816 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.002497Total elapsed time: 0.817 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.003159Total elapsed time: 0.817 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_hp.hlp "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.000864Total elapsed time: 0.818 sec.
+@I [HLS-100] Command 'import_lib' returned 0; elapsed 0.016469Total elapsed time: 0.822 sec.
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/kintex7/kintex7_fpv6.gen "
+@I [HLS-100] Command "source /disk0/Xilinx/Vivado_HLS/2016.1/common/technology/xilinx/common/xilinx_fpv6.gen "
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001323Total elapsed time: 0.824 sec.
+@I [HLS-100] Command 'ap_source' returned 0; elapsed 0.001525Total elapsed time: 0.824 sec.
+@I [HLS-100] Command 'add_library' returned 0; elapsed 0.019472Total elapsed time: 0.824 sec.
+@I [HLS-100] Command 'set_part' returned 0; elapsed 0.160805Total elapsed time: 0.825 sec.
+@I [HLS-100] Command "create_clock -period 4 -name default "
+@I [HLS-100] Command 'create_clock' returned 0; elapsed 0.000561Total elapsed time: 0.826 sec.
+@I [HLS-100] Command "source ./spk_dect/solution1/directives.tcl "
+@I [HLS-100] Command 'ap_source' returned 1; elapsed 0.000251Total elapsed time: 0.826 sec.
+@I [HLS-100] Command 'ap_source' returned 1; elapsed 0.522512Total elapsed time: 0.826 sec.
+couldn't read file "./spk_dect/solution1/directives.tcl": no such file or directory
+    while executing
+"source "./spk_dect/solution1/directives.tcl""
+    (file "/disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl" line 14)
+    invoked from within
+"source /disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl"
+    invoked from within
+"hls::main /disk0/Work/xike_hls_module/hls_proj/spk_dect/solution1/script.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$args"
+    (procedure "hls_proc" line 5)
+    invoked from within
+"hls_proc $argv"
+@I [HLS-100] Command "cleanup_all "
+@I [HLS-100] Command 'cleanup_all' returned 0; elapsed 0.00034Total elapsed time: 0.827 sec.

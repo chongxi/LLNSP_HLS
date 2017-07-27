@@ -4,7 +4,7 @@
 
 #define CH 160
 #define spklen 19
-#define prelen 9
+#define prelen 7
 #define spkNo  2
 
 typedef ap_uint<128> ap_data;  // tetrode 32*4 = 128

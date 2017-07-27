@@ -6,7 +6,7 @@
 #define T  32
 #define N  CH*T
 #define spklen 19
-#define prelen 9
+#define prelen 7
 
 typedef ap_uint<192> ap_bundle; // {16bits, 16bits, 32bits, 127bits}: {{4'b0, ch_last_bufo}, {4'b0, ch_bufo}, frame_No_bufo, multi_channel_muao}
 typedef ap_uint<128> ap_data;   // 32bit * 4 = 128bits for tetrode
