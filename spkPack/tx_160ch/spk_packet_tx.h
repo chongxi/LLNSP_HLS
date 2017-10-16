@@ -10,7 +10,7 @@
 
 typedef ap_uint<192> ap_bundle; // {16bits, 16bits, 32bits, 127bits}: {{4'b0, ch_last_bufo}, {4'b0, ch_bufo}, frame_No_bufo, multi_channel_muao}
 typedef ap_uint<128> ap_data;   // 32bit * 4 = 128bits for tetrode
-typedef ap_uint<12>  ch_type;
+typedef ap_uint<8>  ch_type;    // up to 2^8=256 channels
 
 //struct mua_struct{
 //	int     user;         // t_in
@@ -25,7 +25,7 @@ struct mua_struct{
 
 struct spk_struct{
 	ap_uint<8>   user;
-	ch_type      id;
+	ap_uint<16>    id;     // (ch_grpNo, ch)
 	bool         last;
 	ap_data      data;
 	ap_uint<1>   dest;

@@ -42,6 +42,9 @@
 #define CH_PG 4
 #define INACTIVE_LEN 4 // time length that disable any peak once you get one
 
+#define chs_per_chip    32
+#define number_of_chips 5
+
 typedef ap_fixed<32,19> mua_type;
 typedef ap_uint<64>     data_type;     // (31,0): mua   (63,32): thr
 typedef ap_uint<8>      ch_type;       // ch

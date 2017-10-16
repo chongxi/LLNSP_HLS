@@ -30,7 +30,7 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 //   #pragma HLS ARRAY_PARTITION variable=cnt_A complete dim=1
 
    ap_uint<5> t;
-   ch_type ch_w, ch_last_in_group;  // support up to 256 channels
+   ch_type ch_w, ch_last_in_group, ch_groupNo;  // support up to 256 channels
    ap_uint<1> is_peak;
    ap_data pre, post;
    ap_data tetrode_data;
@@ -44,8 +44,9 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 
    int frameNo;
    mua = mua_stream.read();
-   ch_last_in_group = mua.data.range(187,176);
-   ch_w = mua.data.range(171,160);
+   ch_groupNo = mua.data.range(183,176);
+   ch_last_in_group = mua.data.range(175,168);
+   ch_w = mua.data.range(167,160);
    frameNo = mua.data.range(159,128);
    tetrode_data = mua.data.range(127,0);
 
@@ -74,8 +75,8 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 			   spk_post.dest = 0;
 			    spk_pre.user = 0;
 			   spk_post.user = prelen;
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
+			    spk_pre.id = (ch_groupNo, ch_w);
+			   spk_post.id = (ch_groupNo, ch_w);
 			    spk_pre.last = 0;
 			   spk_post.last = 0;
 			    out_pre.write(spk_pre);             // write 0   (start point)
@@ -100,8 +101,8 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 			   spk_post.dest = 0;
 			    spk_pre.user = cnt_A[ch_w];         // write 1-6
 			   spk_post.user = cnt_A[ch_w]+prelen;  // write 9-14
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
+			    spk_pre.id = (ch_groupNo, ch_w);
+			   spk_post.id = (ch_groupNo, ch_w);
 			    spk_pre.last = 0;
 			   spk_post.last = 0;
 			    out_pre.write(spk_pre);
@@ -114,8 +115,8 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 			   spk_post.dest = 0;
 			    spk_pre.user = cnt_A[ch_w];
 			   spk_post.user = cnt_A[ch_w]+prelen;
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
+			    spk_pre.id = (ch_groupNo, ch_w);
+			   spk_post.id = (ch_groupNo, ch_w);
 			    spk_pre.last = 1;                   //             (pre last)
 			   spk_post.last = 0;
 			    out_pre.write(spk_pre);             // write 7     (7 is pre last)
@@ -137,7 +138,7 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 		   if(cnt_A[ch_w]<spklen-prelen-1){
 			   spk_post.dest = 0;
 			   spk_post.user = cnt_A[ch_w]+prelen;
-			   spk_post.id = ch_w;
+			   spk_post.id = (ch_groupNo, ch_w);
 			   spk_post.last = 0;
 			   out_post.write(spk_post);           // write 16-17
 			   cnt_A[ch_w] += 1;
@@ -146,7 +147,7 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 		   else if(cnt_A[ch_w]==spklen-prelen-1){
 			   spk_post.dest = 0;
 			   spk_post.user = cnt_A[ch_w]+prelen;
-			   spk_post.id = ch_w;
+			   spk_post.id = (ch_groupNo, ch_w);
 			   spk_post.last = 1;
 			   time_stamp.write(frameNo-(spklen-prelen-1));
 			   out_post.write(spk_post);           // write 18   (post last)

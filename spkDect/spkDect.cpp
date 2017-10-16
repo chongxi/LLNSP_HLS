@@ -42,6 +42,7 @@ void spk_dect(hls::stream<mua_struct>  &mua_stream,
     static mua_type Mn[CH] = {0};
     static bool is_peak[CH]  = {0};
     static ap_uint<1> first_S2[CH] = {0};
+    static int syn_large_amp[T][number_of_chips] = {0};
 
     static mua_type buf_2d[T][CH];
 //    static ch_type  ch_hash[CH][CH_PG];
@@ -115,7 +116,12 @@ void spk_dect(hls::stream<mua_struct>  &mua_stream,
 		}
     }
 
+    int chipNo = (int)ch/chs_per_chip;
     //    static bool _if_lowest_in_S1[CH] = {0};
+	if (val<2*thr)
+	{
+		syn_large_amp[j][chipNo] += 1;
+	}
 
     bool if_pivotal = 1;
     Get_Com_Loop:
@@ -123,7 +129,12 @@ void spk_dect(hls::stream<mua_struct>  &mua_stream,
     {
         _val = buf_2d[l][ch];
     	_val_nn[i] = buf_2d[l][ch_nn[i]];
-    	if_pivotal = (_val <= Mn[ch_nn[i]]) && (_val <= _val_nn[i]) && !start_cnt[ch_nn[i]] && if_pivotal;
+    	if_pivotal =    (_val>=(mua_type)(-10000.0))
+    			     && (syn_large_amp[l][chipNo] < 10)
+    			     && (_val <= Mn[ch_nn[i]])
+					 && (_val <= _val_nn[i])
+					 && !start_cnt[ch_nn[i]]
+					 && if_pivotal;
     }
 
 //    cout<<j<<'\t'<<_val<<endl;
@@ -243,9 +254,15 @@ void spk_dect(hls::stream<mua_struct>  &mua_stream,
    }
 
 
-   if(val<thr && val<Mn[ch])        Mn[ch] = val;
-   else if(val>=thr)                Mn[ch] = 0;
+	if(val<thr && val<Mn[ch])        Mn[ch] = val;
+	else if(val>=thr)                Mn[ch] = 0;
 
+	if (ch==CH-1)
+	{
+		reset_syn_large_amp_loop:
+		for(int i=0; i<number_of_chips; i++)
+			syn_large_amp[l][i] = 0;
+	}
 
 //		for(int i=0; i<CH_PG; i++)
 //		{

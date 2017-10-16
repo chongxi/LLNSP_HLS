@@ -7,14 +7,15 @@
 #define prelen 7
 #define spkNo  2
 
-typedef ap_uint<128> ap_data;  // tetrode 32*4 = 128
-typedef ap_uint<12> ch_type;
+//ap_data type: first point is info:(0, ch_groupNo, t, ch) each 32bits; rest are data:tetrode 32*4 = 128 ;
+typedef ap_uint<128> ap_data;  // info+data
+typedef ap_uint<8> ch_type;
 
 struct spk_struct{
 	ap_uint<5>  user;       // pos
 	bool        last;       // last
-	ch_type     id;
-	ap_data     data;  // data
+	ap_uint<16>   id;       // (ch_groupNo, ch)
+	ap_data     data;       // data
 	ap_uint<1>  dest;
 };
 
