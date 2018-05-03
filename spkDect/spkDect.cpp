@@ -130,7 +130,7 @@ void spk_dect(hls::stream<mua_struct>  &mua_stream,
         _val = buf_2d[l][ch];
     	_val_nn[i] = buf_2d[l][ch_nn[i]];
     	if_pivotal =    (_val>=(mua_type)(-10000.0))
-    			     && (syn_large_amp[l][chipNo] < 10)
+    			     && (syn_large_amp[l][chipNo] < 30)
     			     && (_val <= Mn[ch_nn[i]])
 					 && (_val <= _val_nn[i])
 					 && !start_cnt[ch_nn[i]]
