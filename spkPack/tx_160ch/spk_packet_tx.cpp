@@ -163,98 +163,98 @@ void spk_packet_tx(hls::stream<mua_struct> &mua_stream,
 
 
 
-   FSM_Bank_B:
-   switch(state_B[ch_w]){
-	   case IDLE:
-		   if(is_peak && _busy_A[ch_w]){
-			    spk_pre.dest = 1;
-			   spk_post.dest = 1;
-			    spk_pre.user = 0;
-			   spk_post.user = prelen;
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
-			    spk_pre.last = 0;
-			   spk_post.last = 0;
-			    out_pre.write(spk_pre);             // write 0   (start point)
-			   out_post.write(spk_post);            // write 8   (turning point)
-			   state_B[ch_w] = PRE;
-			   cnt_B[ch_w] += 1;
-		   }
-		   else {
-			   state_B[ch_w] = IDLE;
-			   cnt_B[ch_w]   = 0;
-			   _busy_B[ch_w]   = 0;
-		   }
-		   break;
-
-	   case PRE:
-		   if(is_peak)  {
-			   _busy_B[ch_w] = 1;
-		   }
-
-		   if(cnt_B[ch_w]<prelen-1){
-			    spk_pre.dest = 1;
-			   spk_post.dest = 1;
-			    spk_pre.user = cnt_B[ch_w];         // write 1-6
-			   spk_post.user = cnt_B[ch_w]+prelen;  // write 9-14
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
-			    spk_pre.last = 0;
-			   spk_post.last = 0;
-			    out_pre.write(spk_pre);
-			   out_post.write(spk_post);
-			   cnt_B[ch_w] += 1;
-			   state_B[ch_w] = PRE;
-		   }
-		   else if(cnt_B[ch_w]==prelen-1){
-			    spk_pre.dest = 1;
-			   spk_post.dest = 1;
-			    spk_pre.user = cnt_B[ch_w];
-			   spk_post.user = cnt_B[ch_w]+prelen;
-			    spk_pre.id = ch_w;
-			   spk_post.id = ch_w;
-			    spk_pre.last = 1;                   //             (pre last)
-			   spk_post.last = 0;
-			    out_pre.write(spk_pre);             // write 7     (7 is pre last)
-			   out_post.write(spk_post);            // write 15
-			   cnt_B[ch_w] += 1;
-			   state_B[ch_w] = POST;
-		   }
-		   else{
-			   state_B[ch_w] = IDLE;
-			   cnt_B[ch_w] = 0;
-		   }
-		   break;
-
-	   case POST:
-		   if(is_peak)  {
-			   _busy_A[ch_w] = 1;
-		   }
-
-		   if(cnt_B[ch_w]<spklen-prelen-1){
-			   spk_post.dest = 1;
-			   spk_post.user = cnt_B[ch_w]+prelen;
-			   spk_post.id = ch_w;
-			   spk_post.last = 0;
-			   out_post.write(spk_post);           // write 16-17
-			   cnt_B[ch_w] += 1;
-			   state_B[ch_w] = POST;
-		   }
-		   else if(cnt_B[ch_w]==spklen-prelen-1){
-			   spk_post.dest = 1;
-			   spk_post.user = cnt_B[ch_w]+prelen;
-			   spk_post.id = ch_w;
-			   spk_post.last = 1;
-			   time_stamp.write(frameNo-(spklen-prelen-1));
-			   out_post.write(spk_post);           // write 18   (post last)
-			   state_B[ch_w] = IDLE;
-			   cnt_B[ch_w] = 0;
-		   }
-		   else{
-			   state_B[ch_w] = IDLE;
-			   cnt_B[ch_w] = 0;
-		   }
-		   break;
-   }
+//   FSM_Bank_B:
+//   switch(state_B[ch_w]){
+//	   case IDLE:
+//		   if(is_peak && _busy_A[ch_w]){
+//			    spk_pre.dest = 1;
+//			   spk_post.dest = 1;
+//			    spk_pre.user = 0;
+//			   spk_post.user = prelen;
+//			    spk_pre.id = ch_w;
+//			   spk_post.id = ch_w;
+//			    spk_pre.last = 0;
+//			   spk_post.last = 0;
+//			    out_pre.write(spk_pre);             // write 0   (start point)
+//			   out_post.write(spk_post);            // write 8   (turning point)
+//			   state_B[ch_w] = PRE;
+//			   cnt_B[ch_w] += 1;
+//		   }
+//		   else {
+//			   state_B[ch_w] = IDLE;
+//			   cnt_B[ch_w]   = 0;
+//			   _busy_B[ch_w]   = 0;
+//		   }
+//		   break;
+//
+//	   case PRE:
+//		   if(is_peak)  {
+//			   _busy_B[ch_w] = 1;
+//		   }
+//
+//		   if(cnt_B[ch_w]<prelen-1){
+//			    spk_pre.dest = 1;
+//			   spk_post.dest = 1;
+//			    spk_pre.user = cnt_B[ch_w];         // write 1-6
+//			   spk_post.user = cnt_B[ch_w]+prelen;  // write 9-14
+//			    spk_pre.id = ch_w;
+//			   spk_post.id = ch_w;
+//			    spk_pre.last = 0;
+//			   spk_post.last = 0;
+//			    out_pre.write(spk_pre);
+//			   out_post.write(spk_post);
+//			   cnt_B[ch_w] += 1;
+//			   state_B[ch_w] = PRE;
+//		   }
+//		   else if(cnt_B[ch_w]==prelen-1){
+//			    spk_pre.dest = 1;
+//			   spk_post.dest = 1;
+//			    spk_pre.user = cnt_B[ch_w];
+//			   spk_post.user = cnt_B[ch_w]+prelen;
+//			    spk_pre.id = ch_w;
+//			   spk_post.id = ch_w;
+//			    spk_pre.last = 1;                   //             (pre last)
+//			   spk_post.last = 0;
+//			    out_pre.write(spk_pre);             // write 7     (7 is pre last)
+//			   out_post.write(spk_post);            // write 15
+//			   cnt_B[ch_w] += 1;
+//			   state_B[ch_w] = POST;
+//		   }
+//		   else{
+//			   state_B[ch_w] = IDLE;
+//			   cnt_B[ch_w] = 0;
+//		   }
+//		   break;
+//
+//	   case POST:
+//		   if(is_peak)  {
+//			   _busy_A[ch_w] = 1;
+//		   }
+//
+//		   if(cnt_B[ch_w]<spklen-prelen-1){
+//			   spk_post.dest = 1;
+//			   spk_post.user = cnt_B[ch_w]+prelen;
+//			   spk_post.id = ch_w;
+//			   spk_post.last = 0;
+//			   out_post.write(spk_post);           // write 16-17
+//			   cnt_B[ch_w] += 1;
+//			   state_B[ch_w] = POST;
+//		   }
+//		   else if(cnt_B[ch_w]==spklen-prelen-1){
+//			   spk_post.dest = 1;
+//			   spk_post.user = cnt_B[ch_w]+prelen;
+//			   spk_post.id = ch_w;
+//			   spk_post.last = 1;
+//			   time_stamp.write(frameNo-(spklen-prelen-1));
+//			   out_post.write(spk_post);           // write 18   (post last)
+//			   state_B[ch_w] = IDLE;
+//			   cnt_B[ch_w] = 0;
+//		   }
+//		   else{
+//			   state_B[ch_w] = IDLE;
+//			   cnt_B[ch_w] = 0;
+//		   }
+//		   break;
+//   }
 
 }
