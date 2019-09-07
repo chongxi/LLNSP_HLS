@@ -31,5 +31,5 @@ void bram_xike(bool _doWrite, int  din,
                bool _scale_read, ap_uint<8 > _scale_addr, int * scale_out,
                bool _shift_read, ap_uint<8 > _shift_addr, int * shift_out,
                bool _pca_read  , ap_uint<16> _pca_addr  , int * pca_out,
-               bool _vq_read   , ap_uint<16> _vq_addr   , int * vq_out
+               bool _vq_read   , ap_uint<16> _vq_addr   , int * vq_out,
                bool _label_read, ap_uint<16> _label_addr, int * label_out);
