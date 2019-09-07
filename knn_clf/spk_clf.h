@@ -2,13 +2,13 @@
 #include "ap_fixed.h"
 #include <hls_stream.h>
 
-#define CH 40
+#define grpNo 40
 
 #define info_dim 2
 #define pca_dim 4
 #define data_size info_dim+pca_dim
-#define vq_size 100
-#define vq_depth CH*vq_size
+#define vq_size 500
+#define vq_depth grpNo*vq_size
 
 typedef ap_fixed<32,16> ap_type;
 typedef ap_fixed<8,1> vq_type;
