@@ -17,5 +17,6 @@ typedef ap_uint<64> spk_info_type;
 
 void spk_clf(ap_type   data[data_size],
 		     ap32_data vq[vq_depth],
+             ap32_data label[vq_depth],
 			 hls::stream<ap32_data> &distance_out,
 			 hls::stream<ap32_data> &nnid_out);

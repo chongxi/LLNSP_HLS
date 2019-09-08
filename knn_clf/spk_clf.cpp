@@ -2,6 +2,7 @@
 
 void spk_clf(ap_type   data[data_size],
 		     ap32_data vq[vq_depth],
+		     ap32_data label[vq_depth],
 			 hls::stream<ap32_data> &distance_out,
 			 hls::stream<ap32_data> &nnid_out)
 {
@@ -11,20 +12,23 @@ void spk_clf(ap_type   data[data_size],
 
 	static ap32_data vq_in;
 	static vq_type vq_comp[4][vq_size];
-#pragma HLS ARRAY_PARTITION variable=vq_comp complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=vq_comp complete dim=1
+
+	static ap32_data label_in;
+	static ap32_data labels[vq_size];
 
 	static ap_type data_in[pca_dim];
-#pragma HLS ARRAY_PARTITION variable=data_in complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=data_in complete dim=1
 
-	int ch, time;
+	int ch, time; // ch is grp_id at this stage
 
-	int i,j,k;
+	int i,j;
 
 	ap_type min_distance;
 	static ap_type distance[vq_size];
-#pragma HLS ARRAY_PARTITION variable=distance complete dim=1
+//#pragma HLS ARRAY_PARTITION variable=distance complete dim=1
 
-	int nnid;
+	int nnid, label_out;
 
 
 	data_in:
@@ -49,20 +53,25 @@ void spk_clf(ap_type   data[data_size],
 	}
 
 
-	vq_in:
+	vq_in_and_label_in:
 	for (i=0; i<vq_size; i++)
 	{
-#pragma HLS PIPELINE
+//#pragma HLS PIPELINE
+		// vq_in
 		vq_in.range(31, 0) = vq[i+ch*vq_size].range(31, 0);
 		vq_comp[0][i].range(7,0) = vq_in.range(7,0);
 		vq_comp[1][i].range(7,0) = vq_in.range(15,8);
 		vq_comp[2][i].range(7,0) = vq_in.range(23,16);
 		vq_comp[3][i].range(7,0) = vq_in.range(31,24);
-		distance_out.write(vq_in.range(31,0));
+		// label_in
+		label_in.range(31,0)   = label[i+ch*vq_size].range(31, 0);
+		labels[i].range(31, 0) = label_in.range(31,0);
+		// elicit signal out for debugging
+//		distance_out.write(vq_in.range(31,0));
 	}
 
 
-	distance_out:
+	knn:
 	for (i=0; i<vq_size; i++)
 	{
 #pragma HLS PIPELINE
@@ -82,10 +91,10 @@ void spk_clf(ap_type   data[data_size],
 		distance_out.write(distance[i].range(31, 0));
 
 		if (distance[i] < min_distance){
-			nnid = i;
+//			nnid = i;
+			label_out = labels[i];
 			min_distance = distance[i];
 		}
 	}
-	nnid_out.write(nnid);
-
+	nnid_out.write(label_out);
 }

@@ -16,7 +16,7 @@ void bram_xike(bool _doWrite, int  din,
 #pragma HLS INTERFACE ap_none port=_addr
 #pragma HLS INTERFACE ap_none port=din
 #pragma HLS INTERFACE ap_none port=_doRead
-#pragma HLS INTERFACE ap_vld port=dout
+#pragma HLS INTERFACE ap_vld  port=dout
 // read
 #pragma HLS INTERFACE ap_none port=_scale_read
 #pragma HLS INTERFACE ap_none port=_shift_read
@@ -30,34 +30,34 @@ void bram_xike(bool _doWrite, int  din,
 #pragma HLS INTERFACE ap_none port=_vq_addr
 #pragma HLS INTERFACE ap_none port=_label_addr
 // output
-#pragma HLS INTERFACE ap_vld port=scale_out 
-#pragma HLS INTERFACE ap_vld port=shift_out 
+#pragma HLS INTERFACE ap_vld port=scale_out
+#pragma HLS INTERFACE ap_vld port=shift_out
 #pragma HLS INTERFACE ap_vld port=pca_out
 #pragma HLS INTERFACE ap_vld port=vq_out
-#pragma HLS INTERFACE ap_vld port=label_out    
+#pragma HLS INTERFACE ap_vld port=label_out
 
 // ------------------ Don't change below ------------------- //
 // --------------------------------------------------------- //  
 
    static int scale[scale_depth];
-#pragma HLS RESOURCE variable=scale core=RAM_T2P_BRAM
-#pragma HLS DEPENDENCE variable=scale intra false
+//#pragma HLS RESOURCE variable=scale core=RAM_T2P_BRAM
+//#pragma HLS DEPENDENCE variable=scale intra false
 
    static int shift[shift_depth];
-#pragma HLS RESOURCE variable=shift core=RAM_T2P_BRAM
-#pragma HLS DEPENDENCE variable=shift intra false
+//#pragma HLS RESOURCE variable=shift core=RAM_T2P_BRAM
+//#pragma HLS DEPENDENCE variable=shift intra false
 
    static int pca[pca_depth];
-#pragma HLS RESOURCE variable=pca core=RAM_T2P_BRAM
-#pragma HLS DEPENDENCE variable=pca intra false
+//#pragma HLS RESOURCE variable=pca core=RAM_T2P_BRAM
+//#pragma HLS DEPENDENCE variable=pca intra false
 
    static int vq[vq_depth];
-#pragma HLS RESOURCE variable=vq core=RAM_T2P_BRAM
-#pragma HLS DEPENDENCE variable=vq intra false
+//#pragma HLS RESOURCE variable=vq core=RAM_T2P_BRAM
+//#pragma HLS DEPENDENCE variable=vq intra false
 
    static int label[label_depth];
-#pragma HLS RESOURCE variable=label core=RAM_T2P_BRAM
-#pragma HLS DEPENDENCE variable=label intra false
+//#pragma HLS RESOURCE variable=label core=RAM_T2P_BRAM
+//#pragma HLS DEPENDENCE variable=label intra false
 
    if (_scale_read) *scale_out = scale[_scale_addr];
    if (_shift_read) *shift_out = shift[_shift_addr];
