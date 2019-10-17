@@ -11,12 +11,10 @@
 #define scale_size 1
 //#define shift_size pca_dim
 #define pca_size spklen*ch_span
-#define vq_size 100
 
 #define scale_depth CH
 #define shift_depth CH*pca_dim
 #define pca_depth CH*pca_size
-#define vq_depth CH*vq_size
 
 typedef ap_uint<64> spk_info_type;
 typedef ap_uint<1> valid_type;
