@@ -101,16 +101,19 @@ void spk_transform(ap_data   spk[spklen+1],
 		data[i] /= scale_in;
 	}
 
-	output_info:
+	if (ch < CH && time > 2000)
 	{
-		pca_final.write(time);
-		pca_final.write(ch);
-	}
+		output_info:
+		{
+			pca_final.write(time);
+			pca_final.write(ch);
+		}
 
-	output_data:
-	for(i=0; i<pca_dim; i++){
-#pragma HLS PIPELINE
-		pca_final.write(data[i].range(31, 0));
+		output_data:
+		for(i=0; i<pca_dim; i++){
+	#pragma HLS PIPELINE
+			pca_final.write(data[i].range(31, 0));
+		}
 	}
 
 }
