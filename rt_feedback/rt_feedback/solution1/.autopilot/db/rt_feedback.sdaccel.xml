@@ -1,0 +1,153 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'rt_feedback'" level="0">
+<item name = "Date">Thu Oct 17 18:45:32 2019
+</item>
+<item name = "Version">2016.1 (Build 1538259 on Fri Apr 08 16:12:49 MDT 2016)</item>
+<item name = "Project">rt_feedback</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">kintex7</item>
+<item name = "Target device">xc7k325tffg900-2</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Target clock period (ns)">4.00</item>
+<item name = "Clock uncertainty (ns)">0.50</item>
+<item name = "Estimated clock period (ns)">2.39</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">17, 250017, 18, 250018, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- read_packet_in">14, 14, 3, 2, 1, 7, yes</column>
+<column name="- Loop 2">250000, 250000, 1, -, -, 250000, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 48</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, -, -, -</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 60</column>
+<column name="Register">-, -, 68, -</column>
+<specialColumn name="Available">890, 840, 407600, 203800</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="i_1_fu_111_p2">+, 0, 0, 3, 3, 1</column>
+<column name="j_1_fu_149_p2">+, 0, 0, 18, 18, 1</column>
+<column name="ap_sig_124">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_85">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_90">and, 0, 0, 1, 1, 1</column>
+<column name="exitcond1_fu_105_p2">icmp, 0, 0, 2, 3, 2</column>
+<column name="exitcond_fu_143_p2">icmp, 0, 0, 7, 18, 15</column>
+<column name="tmp_1_fu_117_p2">icmp, 0, 0, 2, 3, 1</column>
+<column name="tmp_2_fu_123_p2">icmp, 0, 0, 2, 3, 3</column>
+<column name="tmp_fu_137_p2">icmp, 0, 0, 11, 32, 10</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">1, 6, 1, 6</column>
+<column name="ap_sig_ioackin_spk_id_out_V_V_TREADY">1, 2, 1, 2</column>
+<column name="fet_packet_spk_id_V_blk_n">1, 2, 1, 2</column>
+<column name="i_phi_fu_82_p4">3, 2, 3, 6</column>
+<column name="i_reg_78">3, 2, 3, 6</column>
+<column name="j_reg_89">18, 2, 18, 36</column>
+<column name="spk_id_out_V_V_TDATA_blk_n">1, 2, 1, 2</column>
+<column name="val_assign_fu_60">32, 2, 32, 64</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">5, 0, 5, 0</column>
+<column name="ap_reg_ioackin_spk_id_out_V_V_TREADY">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp0_it0">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp0_it1">1, 0, 1, 0</column>
+<column name="exitcond1_reg_162">1, 0, 1, 0</column>
+<column name="i_1_reg_166">3, 0, 3, 0</column>
+<column name="i_reg_78">3, 0, 3, 0</column>
+<column name="j_reg_89">18, 0, 18, 0</column>
+<column name="tmp_1_reg_171">1, 0, 1, 0</column>
+<column name="tmp_2_reg_175">1, 0, 1, 0</column>
+<column name="tmp_reg_179">1, 0, 1, 0</column>
+<column name="val_assign_fu_60">32, 0, 32, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, rt_feedback, return value</column>
+<column name="fet_packet_spk_id_V_dout">in, 32, ap_fifo, fet_packet_spk_id_V, pointer</column>
+<column name="fet_packet_spk_id_V_empty_n">in, 1, ap_fifo, fet_packet_spk_id_V, pointer</column>
+<column name="fet_packet_spk_id_V_read">out, 1, ap_fifo, fet_packet_spk_id_V, pointer</column>
+<column name="spk_id_out_V_V_TDATA">out, 32, axis, spk_id_out_V_V, pointer</column>
+<column name="spk_id_out_V_V_TVALID">out, 1, axis, spk_id_out_V_V, pointer</column>
+<column name="spk_id_out_V_V_TREADY">in, 1, axis, spk_id_out_V_V, pointer</column>
+</table>
+</item>
+</section>
+
+<section name = "Critical Path" level="0">
+<item name = "Max Delay">2.39</item>
+<item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
+<keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
+<column name="'val_assign_load', rt_feedback.cpp:25">load, 0.00, 0.00, -, -, -, -, -, -, -, -, &apos;val&apos;, -, -</column>
+<column name="'tmp', rt_feedback.cpp:25">icmp, 1.50, 1.50, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="'j'">phi, 0.89, 2.39, -, -, -, -, -, -, -, -, -, -, &apos;j&apos;, rt_feedback.cpp:26</column>
+</table>
+</item>
+</section>
+</profile>

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Thu Oct 17 20:49:50 2019
+# Process ID: 3366
+# Current directory: /disk0/Work/xike_hls_module/rt_feedback/rt_feedback/solution1/impl/verilog/project.runs/impl_1
+# Command line: vivado -log rt_feedback.vdi -applog -messageDb vivado.pb -mode batch -source rt_feedback.tcl -notrace
+# Log file: /disk0/Work/xike_hls_module/rt_feedback/rt_feedback/solution1/impl/verilog/project.runs/impl_1/rt_feedback.vdi
+# Journal file: /disk0/Work/xike_hls_module/rt_feedback/rt_feedback/solution1/impl/verilog/project.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source rt_feedback.tcl -notrace
