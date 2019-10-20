@@ -7,6 +7,7 @@ void rt_feedback(ap32_data fet_packet_spk_id[dim],
 #pragma HLS INTERFACE axis port=spk_id_out
 
     int time;
+    int fet;
     int id; // first two items in the packet
 
     time = 0;
@@ -14,15 +15,16 @@ void rt_feedback(ap32_data fet_packet_spk_id[dim],
 
 	read_packet_in:
 	for (int i=0; i<dim; i++) {
-#pragma HLS PIPELINE
-		if(i==0)
-			time = fet_packet_spk_id[i].range(31,0);
-		if(i==6)
-			id   = fet_packet_spk_id[i].range(31,0);
+    	if(i==0)
+    		time = fet_packet_spk_id[i].range(31,0);
+        if(i>0 && i<dim-1)
+            fet  = fet_packet_spk_id[i].range(31,0);
+    	if(i==dim-1)
+    		id   = fet_packet_spk_id[i].range(31,0);
 	}
 
     feedback_rule_out: // 1ms stimulation per targeted spike
-    if (id == 888) {
+    if (id == 101) {
         for (int j=0; j<pulse_width; j++)
             spk_id_out.write(id);
     }
