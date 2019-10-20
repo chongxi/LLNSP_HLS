@@ -25,7 +25,7 @@ void spk_clf(ap_type   data[data_size],
 	int i,j;
 
 	ap_type min_distance;
-	static ap_type distance[vq_size];
+	static ap_type distance;//[vq_size];
 //#pragma HLS ARRAY_PARTITION variable=distance complete dim=1
 
 	int nnid, label_out;
@@ -76,7 +76,7 @@ void spk_clf(ap_type   data[data_size],
 	{
 #pragma HLS PIPELINE
 		if(i==0) min_distance = 1;
-		distance[i] = 0;
+		distance = 0;
 		vq_type vq_reg;
 		ap_type data_reg, sub, sub2;
 		accumulate:
@@ -85,15 +85,15 @@ void spk_clf(ap_type   data[data_size],
 			data_reg = data_in[j];
 			sub      = data_reg - vq_reg;
 			sub2     = sub*sub;
-			distance[i] += sub2;
+			distance += sub2;
 		}
 
-		distance_out.write(distance[i].range(31, 0));
+//		distance_out.write(distance.range(31, 0));
 
-		if (distance[i] < min_distance){
+		if (distance < min_distance){
 //			nnid = i;
 			label_out = labels[i];
-			min_distance = distance[i];
+			min_distance = distance;
 		}
 	}
 	nnid_out.write(label_out);
