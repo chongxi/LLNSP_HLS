@@ -26,7 +26,7 @@
 #define label_depth  grpNo*label_len
 #define label_base_addr  (vq_base_addr+label_depth)
 
-void bram_xike(bool _doWrite, int  din,
+void bram_xike(bool _doWrite, int  din,  ap_uint<16> _addr_in,
                bool _doRead,  int* dout, ap_uint<16> _addr,
                bool _scale_read, ap_uint<8 > _scale_addr, int * scale_out,
                bool _shift_read, ap_uint<8 > _shift_addr, int * shift_out,

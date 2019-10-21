@@ -1,6 +1,6 @@
 #include "bram_xike.h"
 
-void bram_xike(bool _doWrite, int  din,
+void bram_xike(bool _doWrite, int  din,  ap_uint<16> _addr_in,
                bool _doRead,  int* dout, ap_uint<16> _addr,
                bool _scale_read, ap_uint<8 > _scale_addr, int * scale_out,
                bool _shift_read, ap_uint<8 > _shift_addr, int * shift_out,
@@ -8,14 +8,18 @@ void bram_xike(bool _doWrite, int  din,
                bool _vq_read   , ap_uint<16> _vq_addr   , int * vq_out,
                bool _label_read, ap_uint<16> _label_addr, int * label_out)
 {
+#pragma HLS INTERFACE register port=_addr_in
+#pragma HLS INTERFACE register port=din
+#pragma HLS INTERFACE register port=_doWrite
 
 #pragma HLS PIPELINE II=1
 #pragma HLS INTERFACE ap_ctrl_none port=return
 // host interface
 #pragma HLS INTERFACE ap_none port=_doWrite
-#pragma HLS INTERFACE ap_none port=_addr
+#pragma HLS INTERFACE ap_none port=_addr_in
 #pragma HLS INTERFACE ap_none port=din
 #pragma HLS INTERFACE ap_none port=_doRead
+#pragma HLS INTERFACE ap_none port=_addr
 #pragma HLS INTERFACE ap_vld  port=dout
 // read
 #pragma HLS INTERFACE ap_none port=_scale_read
@@ -38,6 +42,7 @@ void bram_xike(bool _doWrite, int  din,
 
 // ------------------ Don't change below ------------------- //
 // --------------------------------------------------------- //  
+   ap_uint<16> _addr_buf = _addr_in;
 
    static int scale[scale_depth];
 #pragma HLS RESOURCE variable=scale core=RAM_T2P_BRAM
@@ -68,7 +73,7 @@ void bram_xike(bool _doWrite, int  din,
    enum mem_selected {mem_scale=0, mem_shift, mem_pca, mem_vq, mem_label};
    mem_selected mem_state;
 
-   mem_state_1_read_write_host_addr:{
+   mem_state_read:{
        if (_addr < shift_base_addr)
            mem_state = mem_scale;
        else if(_addr>=shift_base_addr && _addr<pca_base_addr)
@@ -81,22 +86,37 @@ void bram_xike(bool _doWrite, int  din,
            mem_state = mem_label;
    }
 
+   mem_selected mem_state_w;
+
+   mem_state_write:{
+       if (_addr_buf < shift_base_addr)
+    	   mem_state_w = mem_scale;
+       else if(_addr_buf>=shift_base_addr && _addr_buf<pca_base_addr)
+    	   mem_state_w = mem_shift;
+       else if(_addr_buf>=pca_base_addr && _addr_buf<vq_base_addr)
+    	   mem_state_w = mem_pca;
+       else if(_addr_buf>=vq_base_addr && _addr_buf<label_base_addr)
+    	   mem_state_w = mem_vq;
+       else if(_addr_buf>=label_base_addr)
+    	   mem_state_w = mem_label;
+   }
+
    if (_doWrite) {
-       switch (mem_state) {
+       switch (mem_state_w) {
         case mem_scale:
-            scale[_addr] = din;
+            scale[_addr_buf] = din;
             break;
         case mem_shift:
-            shift[_addr-shift_base_addr] = din;
+            shift[_addr_buf-shift_base_addr] = din;
             break;
         case mem_pca:
-            pca[_addr-pca_base_addr] = din;
+            pca[_addr_buf-pca_base_addr] = din;
             break;
         case mem_vq:
-            vq[_addr-vq_base_addr] = din;
+            vq[_addr_buf-vq_base_addr] = din;
             break;
         case mem_label:
-            label[_addr-label_base_addr] = din;
+            label[_addr_buf-label_base_addr] = din;
        }
    }
 
