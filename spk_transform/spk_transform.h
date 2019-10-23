@@ -34,5 +34,5 @@ void spk_transform(ap_data   spk[spklen+1],
 				   ap32_data scale[scale_depth],
 				   ap32_data shift[shift_depth],
 				   ap32_data pca[pca_depth],
-				   hls::stream<ap32_data> &pca_stream,
+//				   hls::stream<ap32_data> &pca_stream,
 				   hls::stream<ap32_data> &pca_final);

@@ -4,12 +4,13 @@ void spk_transform(ap_data   spk[spklen+1],
 				   ap32_data scale[scale_depth],
 				   ap32_data shift[shift_depth],
 				   ap32_data pca[pca_depth],
-				   hls::stream<ap32_data> &pca_stream,
+//				   hls::stream<ap32_data> &pca_stream,      // port for debugging
 				   hls::stream<ap32_data> &pca_final)
 {
 #pragma HLS INTERFACE ap_fifo port=spk
-#pragma HLS INTERFACE axis port=pca_stream
+//#pragma HLS INTERFACE axis port=pca_stream
 #pragma HLS INTERFACE axis port=pca_final
+#pragma HLS INTERFACE register port=pca_final
 
 	static ap_type  spk_comp[spklen*ch_span];   // concatenated spike waveform
 #pragma HLS ARRAY_PARTITION variable=spk_comp complete dim=1
@@ -24,7 +25,8 @@ void spk_transform(ap_data   spk[spklen+1],
 #pragma HLS ARRAY_PARTITION variable=pca_comp complete dim=1
 	
 	static ap_type  data[pca_dim];
-#pragma HLS ARRAY_PARTITION variable=data complete dim=1
+	ap_type data_out;
+//#pragma HLS ARRAY_PARTITION variable=data complete dim=1
 
 	int ch, time;
 	int i,j,k;
@@ -32,11 +34,11 @@ void spk_transform(ap_data   spk[spklen+1],
 	init:
 	for(i=0;i<pca_dim;i++)
 	{
-#pragma HLS UNROLL
+//#pragma HLS UNROLL
 		data[i]=0;
 	}
 
-	spk_in:
+	spk_in:      // unpack 128 bits spk input
 	for(k=0; k<spklen+1; k++)
 	{
 #pragma HLS PIPELINE
@@ -74,29 +76,24 @@ void spk_transform(ap_data   spk[spklen+1],
 		data[1] += pca_comp[1][i] * spk_comp[i];
 		data[2] += pca_comp[2][i] * spk_comp[i];
 		data[3] += pca_comp[3][i] * spk_comp[i];
-		pca_stream.write(pca_in.range(31, 0));
+//		pca_stream.write(pca_in.range(31, 0));
 	}
 
-	shift_scale_in:
+	scale_in.range(31, 0) = scale[ch].range(31, 0);
+
+	shift_in:
 	for (i=0; i<pca_dim; i++)
 	{
 #pragma HLS PIPELINE
-		if(i==0) {
-			scale_in.range(31, 0) = scale[ch].range(31, 0);
-			shift_in[i].range(31, 0) = shift[i+ch*pca_dim].range(31, 0);
-			pca_stream.write(shift_in[i].range(31, 0));
-		}
-		else {
-			shift_in[i].range(31, 0) = shift[i+ch*pca_dim].range(31, 0);
-			pca_stream.write(shift_in[i].range(31, 0));
-		}
+		shift_in[i].range(31, 0) = shift[i+ch*pca_dim].range(31, 0);
+//		pca_stream.write(shift_in[i].range(31, 0));
 	}
 
-	pca_stream.write(scale_in.range(31,0));
+//	pca_stream.write(scale_in.range(31,0));
 
 	transform:
 	for(i=0; i<pca_dim; i++){
-#pragma HLS UNROLL
+//#pragma HLS UNROLL
 		data[i] += shift_in[i];
 		data[i] /= scale_in;
 	}
@@ -112,7 +109,8 @@ void spk_transform(ap_data   spk[spklen+1],
 		output_data:
 		for(i=0; i<pca_dim; i++){
 	#pragma HLS PIPELINE
-			pca_final.write(data[i].range(31, 0));
+			data_out = data[i].range(31, 0);
+			pca_final.write(data_out);
 		}
 	}
 
