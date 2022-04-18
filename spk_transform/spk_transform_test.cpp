@@ -19,7 +19,7 @@ int main()
 	ap32_data x = 0x00fd06d1;
 //	ap_type x = 0b11111111111111100110111000100111;
 
-    ap_type x_t = -117.5606689;
+    ap_type x_t = -1.56;
 //    x_t.range(31,0)= x.range(31,0);
     pca_type y;
     y.range(7,0) = x.range(7,0);
@@ -35,6 +35,13 @@ int main()
 	spk_info_type info = 0x0000000000000011;
 	int ch = info.range(31,0);
 	std::cout << "ch: " << ch << endl;
+
+	pca_type pca_for_test = -0.125;
+	std::cout << "pca_for_test_ap: " << pca_for_test.range(7,0) << endl;
+	ap_type pca_for_test_ap;
+	pca_for_test_ap = pca_for_test;
+	std::cout << "pca_for_test_ap: " << pca_for_test_ap << endl;
+
 //	std::cout << x_t << '\t' << y << endl;
 //	ap_type result;
 //	result = x_t * y;

@@ -36,7 +36,7 @@ void ref_sub(hls::stream<mua_struct>  &mua_stream,
     if(ch_ref<CH)
         _val = buf_2d[l][ch] - buf_2d[l][ch_ref];
     else
-        _val = buf_2d[l][ch];
+        _val = buf_2d[l][ch] - 0;
 
     t_out = t - 1;
 // ------------------------------------------------

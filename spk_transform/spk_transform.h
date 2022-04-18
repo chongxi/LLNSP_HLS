@@ -16,23 +16,17 @@
 #define shift_depth CH*pca_dim
 #define pca_depth CH*pca_size
 
-typedef ap_uint<64> spk_info_type;
-typedef ap_uint<1> valid_type;
-typedef ap_fixed<32,16> ap_type;  // 16 bits float
-typedef ap_fixed<8,1> pca_type;
-typedef ap_uint<32> ap32_data;
-typedef ap_uint<96> ap96_data;
+// type *_type for fixed point arithmetics:
+typedef ap_fixed<32,19> io_type;     // 19 bits for the integer part, 13 bits for the fractional part; 13+19 = 32; binpoint: 13
+typedef ap_fixed<32,13> param_type;  // 13 bits for the integer part, 19 bits for the fractional part; 13+19 = 32; binpoint: 19
+typedef ap_fixed<8,1> pca_type;   // 4 pca dimensions, each one use 7 bits for the fractional part, the first bit is sign bit; binpoint: 7
 
-typedef ap_uint<128> ap_data;  // info+data
-typedef ap_uint<8> ch_type;
+// type *_data for data transmission at bit level, therefore unsigned is used:
+typedef ap_uint<32> ap32_data;    // use uint type to receives and send bits but use ap_fixed<32,19> and ap_fixed<8,1> for internal computing
+typedef ap_uint<128> ap128_data;  // info+data
 
-struct spk_stream{
-	ap_data     data;
-};
-
-void spk_transform(ap_data   spk[spklen+1],
-				   ap32_data scale[scale_depth],
-				   ap32_data shift[shift_depth],
-				   ap32_data pca[pca_depth],
-//				   hls::stream<ap32_data> &pca_stream,
+void spk_transform(ap128_data   spk[spklen+1],
+				   ap32_data  scale[scale_depth],
+				   ap32_data  shift[shift_depth],
+				   ap32_data    pca[pca_depth],
 				   hls::stream<ap32_data> &pca_final);
