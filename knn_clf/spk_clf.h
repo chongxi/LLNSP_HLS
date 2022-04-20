@@ -10,7 +10,7 @@
 #define vq_size 500
 #define vq_depth grpNo*vq_size
 
-typedef ap_fixed<32,16> ap_type;
+typedef ap_fixed<32,19> ap_type;   // 19 bits for the integer part, 13 bits for the fractional part; 13+19 = 32; binpoint: 13
 typedef ap_fixed<8,1> vq_type;
 typedef ap_uint<32> ap32_data;
 typedef ap_uint<64> spk_info_type;

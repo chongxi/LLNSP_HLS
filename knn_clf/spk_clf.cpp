@@ -6,9 +6,9 @@ void spk_clf(ap_type   data[data_size],
 			 hls::stream<ap32_data> &distance_out,
 			 hls::stream<ap32_data> &nnid_out)
 {
-#pragma HLS INTERFACE ap_fifo port=data
-#pragma HLS INTERFACE axis port=distance_out
-#pragma HLS INTERFACE axis port=nnid_out
+#pragma HLS INTERFACE mode=ap_fifo port=data register
+#pragma HLS INTERFACE mode=axis register_mode=both port=distance_out register
+#pragma HLS INTERFACE mode=axis register_mode=both port=nnid_out register
 
 	static ap32_data vq_in;
 	static vq_type vq_comp[4][vq_size];
@@ -18,7 +18,7 @@ void spk_clf(ap_type   data[data_size],
 	static ap32_data labels[vq_size];
 
 	static ap_type data_in[pca_dim];
-//#pragma HLS ARRAY_PARTITION variable=data_in complete dim=1
+#pragma HLS ARRAY_PARTITION variable=data_in complete dim=1
 
 	int ch, time; // ch is grp_id at this stage
 
@@ -28,27 +28,26 @@ void spk_clf(ap_type   data[data_size],
 	static ap_type distance;//[vq_size];
 //#pragma HLS ARRAY_PARTITION variable=distance complete dim=1
 
-	int nnid, label_out;
-
+	int label_out;
+	label_out = 0;
 
 	data_in:
 	for (i=0; i<data_size; i++)
 	{
-#pragma HLS PIPELINE
+//#pragma HLS PIPELINE
 		if(i==0)
 		{
 			time = data[i].range(31,0);
-			nnid_out.write(time);
 		}
-		if(i==1)
+		else if(i==1)
 		{
 			ch   = data[i].range(31,0);
-			nnid_out.write(ch);
 		}
-		if(i>=2)
+		else if(i>=2)
 		{
-			data_in[i-2] = data[i];
-			nnid_out.write(data_in[i-2].range(31,0));
+			if (i<6){
+				data_in[i-2] = data[i];
+			}
 		}
 	}
 
@@ -88,13 +87,18 @@ void spk_clf(ap_type   data[data_size],
 			distance += sub2;
 		}
 
-//		distance_out.write(distance.range(31, 0));
+		distance_out.write(distance.range(31, 0));
 
 		if (distance < min_distance){
-//			nnid = i;
 			label_out = labels[i];
 			min_distance = distance;
 		}
 	}
-	nnid_out.write(label_out);
+
+	output:
+	nnid_out.write(time);                              // 0       output spike time stamp
+	nnid_out.write(ch);                                // 1       output electrode group No
+	for (i=0; i<4; i++)
+		nnid_out.write(data_in[i].range(31,0));        // 2,3,4,5  output fet0, fet1, fet2, fet3
+	nnid_out.write(label_out);                         // 6         output spike-id
 }

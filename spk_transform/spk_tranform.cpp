@@ -118,7 +118,7 @@ void spk_transform(ap128_data   spk[spklen+1],
 		pca_final.write(data_out);
 	}
 
-	output_id:
-	pca_final.write(0);
+//	output_id:
+//	pca_final.write(0);
 
 }
