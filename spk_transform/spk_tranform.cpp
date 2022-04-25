@@ -19,7 +19,16 @@ void spk_transform(ap128_data   spk[spklen+1],
 //#pragma HLS INTERFACE axis port=pca_stream
 #pragma HLS INTERFACE mode=axis register_mode=both port=pca_final register
 
-	static io_type  spk_comp[spklen*ch_span];   // concatenated spike waveform
+	static io_type spk_comp[spklen*ch_span];   // concatenated spike waveform (first 19pts is the spike waveform from 1st channel, second 19pts is the spike waveform from 2nd channel)
+	io_type  spk_val;
+    io_type  spk_min;                    // lower_bound of spikes from 4 channels (scalar)
+	io_type  spk_max;                    // upper_bound of spikes from 4 channels (scalar)
+	io_type  spk_range;                  // upper_bound - lower_bound (scalar)
+	io_type  mean_spk_range;             // mean(upper_bound - lower_bound)  (scalar)
+    bool     spurious_spk;               // mean_spk_range < 0.01
+
+    mean_spk_range = 0;
+
 #pragma HLS ARRAY_PARTITION variable=spk_comp complete dim=1
 
 	static param_type scale_in;
@@ -54,7 +63,7 @@ void spk_transform(ap128_data   spk[spklen+1],
 			ch   = spk[k].range(31, 0);
 			time = spk[k].range(63,32);
 		}
-		else
+		else if (k>0)
 		{
 			spk_comp[           k - 1].range(31,0) = spk[k].range(127,96);
 			spk_comp[spklen   + k - 1].range(31,0) = spk[k].range( 95,64);
@@ -108,17 +117,38 @@ void spk_transform(ap128_data   spk[spklen+1],
 	for(i=0; i<pca_dim; i++)
 		data[i] *= scale_in;
 
+
+	spk_range:  // decide whether this spike is spurious based on its mean waveform range (max - min)
+	for(i=0; i<spklen; i++)
+	{
+//#pragma HLS PIPELINE off
+		spk_min = spk_comp[i];  // don't initialize as 0 (critical), as spk_val might never <= 0, then spk_range is calculated using 0
+		spk_max = spk_comp[i];  // don't initialize as 0 (critical), as spk_val might never >  0, then spk_range is calculated using 0
+		spk_range = 0;
+		for(j=0; j<ch_span; j++)
+		{
+			spk_val = spk_comp[i+j*spklen];
+			if(spk_val <= spk_min)
+				spk_min = spk_val;
+			if(spk_val >  spk_max)
+				spk_max = spk_val;
+		}
+		spk_range = spk_max - spk_min;    // upper_bound - lower_bound for ith points in spike waveforms across 4 channels
+		mean_spk_range = mean_spk_range + spk_range;
+	}
+
+	mean_spk_range = mean_spk_range;
+
 	output_info:
 	pca_final.write(time);
 	pca_final.write(ch);
 
 	output_fet:
 	for(i=0; i<pca_dim; i++){
-		data_out = data[i].range(31, 0);
-		pca_final.write(data_out);
+		pca_final.write(data[i].range(31, 0));
 	}
 
-//	output_id:
-//	pca_final.write(0);
+	output_mean_spk_range:
+	pca_final.write(mean_spk_range.range(31, 0));
 
 }

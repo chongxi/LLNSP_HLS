@@ -20,8 +20,8 @@ void spk_clf(ap_type   data[data_size],
 	static ap_type data_in[pca_dim];
 #pragma HLS ARRAY_PARTITION variable=data_in complete dim=1
 
-	int ch, time; // ch is grp_id at this stage
-
+	int ch, time;             // ch is grp_id at this stage
+	ap_type mean_spk_range;   // mean(upper_bound - lower_bound)
 	int i,j;
 
 	ap_type min_distance;
@@ -31,8 +31,8 @@ void spk_clf(ap_type   data[data_size],
 	int label_out;
 	label_out = 0;
 
-	data_in:
-	for (i=0; i<data_size; i++)
+	data_in:   // data: (0:time, 1:groupNo, 2:fet0, 3:fet1, 4:fet2, 5:fet3, 6:mean_spk_range)
+	for (i=0; i<7; i++)
 	{
 //#pragma HLS PIPELINE
 		if(i==0)
@@ -47,6 +47,9 @@ void spk_clf(ap_type   data[data_size],
 		{
 			if (i<6){
 				data_in[i-2] = data[i];
+			}
+			else if(i==6){
+				mean_spk_range = data[i];
 			}
 		}
 	}
@@ -95,10 +98,15 @@ void spk_clf(ap_type   data[data_size],
 		}
 	}
 
-	output:
+	spurious_spike:  // low if all waveforms are the same, then it is likely a spurious spike but won't be able to tell if only look at feature
+	if (mean_spk_range<0.01)
+		label_out = 0;
+
+	output:  // pay attention to data_in and mean_spk_range, these use ap_fixed needs to output bits by bits (with .range(high, low))
 	nnid_out.write(time);                              // 0       output spike time stamp
 	nnid_out.write(ch);                                // 1       output electrode group No
 	for (i=0; i<4; i++)
 		nnid_out.write(data_in[i].range(31,0));        // 2,3,4,5  output fet0, fet1, fet2, fet3
-	nnid_out.write(label_out);                         // 6         output spike-id
+	nnid_out.write(label_out);                         // 6        output spike-id
+	nnid_out.write(mean_spk_range.range(31,0));        // 7        output mean_spk_range
 }
