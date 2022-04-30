@@ -21,13 +21,19 @@ void spk_transform(ap128_data   spk[spklen+1],
 
 	static io_type spk_comp[spklen*ch_span];   // concatenated spike waveform (first 19pts is the spike waveform from 1st channel, second 19pts is the spike waveform from 2nd channel)
 	io_type  spk_val;
+	io_type  spk_abs;
+	io_type  spk_sum;
     io_type  spk_min;                    // lower_bound of spikes from 4 channels (scalar)
 	io_type  spk_max;                    // upper_bound of spikes from 4 channels (scalar)
 	io_type  spk_range;                  // upper_bound - lower_bound (scalar)
 	io_type  mean_spk_range;             // mean(upper_bound - lower_bound)  (scalar)
+	io_type  mean_spk_total;             // mean(abs(spk))
+	io_type  spk_energy;                 // defined by mean_spk_range/mean_spk_total
     bool     spurious_spk;               // mean_spk_range < 0.01
 
     mean_spk_range = 0;
+    mean_spk_total = 0;
+    spk_energy     = 0;
 
 #pragma HLS ARRAY_PARTITION variable=spk_comp complete dim=1
 
@@ -118,26 +124,31 @@ void spk_transform(ap128_data   spk[spklen+1],
 		data[i] *= scale_in;
 
 
-	spk_range:  // decide whether this spike is spurious based on its mean waveform range (max - min)
+	spk_energy:  // decide whether this spike is spurious based on its energy, lower energy is harder to triangulate; too low energy can be spurious
 	for(i=0; i<spklen; i++)
 	{
 //#pragma HLS PIPELINE off
 		spk_min = spk_comp[i];  // don't initialize as 0 (critical), as spk_val might never <= 0, then spk_range is calculated using 0
 		spk_max = spk_comp[i];  // don't initialize as 0 (critical), as spk_val might never >  0, then spk_range is calculated using 0
 		spk_range = 0;
+		spk_sum   = 0;
 		for(j=0; j<ch_span; j++)
 		{
 			spk_val = spk_comp[i+j*spklen];
+			spk_abs = fabs(spk_val);      // take absolute value to accumulate
+			spk_sum = spk_sum + spk_abs;
 			if(spk_val <= spk_min)
 				spk_min = spk_val;
 			if(spk_val >  spk_max)
 				spk_max = spk_val;
 		}
 		spk_range = spk_max - spk_min;    // upper_bound - lower_bound for ith points in spike waveforms across 4 channels
-		mean_spk_range = mean_spk_range + spk_range;
+		mean_spk_range = mean_spk_range + spk_range;    // accumulated spk_range for each sample
+		mean_spk_total = mean_spk_total + spk_sum;      // accumulated spk_total for each sample
 	}
 
-	mean_spk_range = mean_spk_range;
+	mean_spk_total = mean_spk_total/ch_span;
+	spk_energy = mean_spk_range/mean_spk_total;    // the range of multi-channel spike waveforms divided by absolute average of spike waveforms
 
 	output_info:
 	pca_final.write(time);
@@ -149,6 +160,6 @@ void spk_transform(ap128_data   spk[spklen+1],
 	}
 
 	output_mean_spk_range:
-	pca_final.write(mean_spk_range.range(31, 0));
+	pca_final.write(spk_energy.range(31, 0));
 
 }
