@@ -1,4 +1,4 @@
-# xike_hls_module
+# high level synthesis module for low-latency neural signal processors
 
 This repo contains all the Vivado-HLS modules used in Project Xike. 
 
